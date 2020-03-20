@@ -1,4 +1,4 @@
-package dal.cloud.tourism.TicketBooking.authentication;
+package dal.cloud.tourism.Analytics.authentication;
 
 import com.auth0.jwk.Jwk;
 import com.auth0.jwk.JwkProvider;

@@ -40,3 +40,24 @@ http://localhost:8081/booking/addBooking?userId=1&journeyId=5&transactionMode=Cr
 http://localhost:8081/booking/addBooking?userId=1&journeyId=4&transactionMode=Credit Card&amount=250&totalSeats=2&cardNumber=1111-1234-1234-1234&holderName=abc&mm==11&yy==22&cvv=352
 //Booking request with valid card details
 http://localhost:8081/booking/addBooking?userId=1&journeyId=5&transactionMode=Credit Card&amount=250&totalSeats=1&cardNumber=1111-1111-1111-1111&holderName=abc&mm==11&yy==22&cvv=352
+
+
+//Analytics
+http://localhost:8081/journeyStats/crowdForAllJourneys
+http://localhost:8081/journeyStats/crowdByJourneyId?journeyId=4
+http://localhost:8081/journeyStats/crowdByDate?date=2020-05-10
+
+http://localhost:8081/destinationStats/journeysForAllDestinations
+http://localhost:8081/destinationStats/crowdForAllDestinations
+http://localhost:8081/destinationStats/journeysByDestinationId?destinationId=2 
+http://localhost:8081/destinationStats/crowdByDestinationId?destinationId=2
+
+http://localhost:8081/userStats/bookingCount?userId=1
+http://localhost:8081/userStats/bookingByMonth?userId=1
+http://localhost:8081/userStats/bookingByYear?userId=1
+http://localhost:8081/userStats/destinationsCount?userId=1
+http://localhost:8081/userStats/destinationsByMonth?userId=1
+http://localhost:8081/userStats/destinationsByYear?userId=1
+http://localhost:8081/userStats/moneySpent?userId=1
+http://localhost:8081/userStats/moneySpentByMonth?userId=1
+http://localhost:8081/userStats/moneySpentByYear?userId=1

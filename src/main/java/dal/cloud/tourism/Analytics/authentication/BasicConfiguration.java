@@ -1,4 +1,4 @@
-package dal.cloud.tourism.TicketBooking.authentication;
+package dal.cloud.tourism.Analytics.authentication;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

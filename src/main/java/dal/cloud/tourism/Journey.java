@@ -1,4 +1,4 @@
-package dal.cloud.tourism.TicketBooking.model;
+package dal.cloud.tourism;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

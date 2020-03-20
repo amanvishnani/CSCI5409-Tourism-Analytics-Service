@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dal.cloud</groupId>
-	<artifactId>booking_service</artifactId>
+	<artifactId>analytics_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>booking_service</name>
-	<description>Booking Service for Cloud Project</description>
+	<description>Analytics Service for Cloud Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
