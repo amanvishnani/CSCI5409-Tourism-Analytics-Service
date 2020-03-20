@@ -37,6 +37,30 @@ public class DestinationAnalyticsController {
 		return list;
 	}
 	
+	@RequestMapping("/journeysForAllDestinationsByMonth")
+	public List<Object> getJourneysForAllDestinationsByMonth() {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		System.out.println(currentPrincipalName);
+		
+		List<Object> list = new ArrayList<Object>();
+		list = destinationAnalyticsRepository.getJourneyStatsForAllDestinationsByMonth();
+		return list;
+	}
+	
+	@RequestMapping("/journeysForAllDestinationsByYear")
+	public List<Object> getJourneysForAllDestinationsByYear() {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		System.out.println(currentPrincipalName);
+		
+		List<Object> list = new ArrayList<Object>();
+		list = destinationAnalyticsRepository.getJourneyStatsForAllDestinationsByYear();
+		return list;
+	}
+	
 	@RequestMapping("/crowdForAllDestinations")
 	public List<Object> getCrowdStatsForAllDestinations() {
 		
@@ -46,6 +70,30 @@ public class DestinationAnalyticsController {
 		
 		List<Object> list = new ArrayList<Object>();
 		list = destinationAnalyticsRepository.getCrowdStatsForAllDestinations();
+		return list;
+	}
+	
+	@RequestMapping("/crowdForAllDestinationsByMonth")
+	public List<Object> getCrowdStatsForAllDestinationsByMonth() {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		System.out.println(currentPrincipalName);
+		
+		List<Object> list = new ArrayList<Object>();
+		list = destinationAnalyticsRepository.getCrowdStatsForAllDestinationsByMonth();
+		return list;
+	}
+	
+	@RequestMapping("/crowdForAllDestinationsByYear")
+	public List<Object> getCrowdStatsForAllDestinationsByYear() {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		System.out.println(currentPrincipalName);
+		
+		List<Object> list = new ArrayList<Object>();
+		list = destinationAnalyticsRepository.getCrowdStatsForAllDestinationsByYear();
 		return list;
 	}
 	

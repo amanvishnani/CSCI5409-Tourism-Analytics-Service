@@ -48,7 +48,11 @@ http://localhost:8081/journeyStats/crowdByJourneyId?journeyId=4
 http://localhost:8081/journeyStats/crowdByDate?date=2020-05-10
 
 http://localhost:8081/destinationStats/journeysForAllDestinations
+http://localhost:8081/destinationStats/journeysForAllDestinationsByMonth
+http://localhost:8081/destinationStats/journeysForAllDestinationsByYear
 http://localhost:8081/destinationStats/crowdForAllDestinations
+http://localhost:8081/destinationStats/crowdForAllDestinationsByMonth
+http://localhost:8081/destinationStats/crowdForAllDestinationsByYear
 http://localhost:8081/destinationStats/journeysByDestinationId?destinationId=2 
 http://localhost:8081/destinationStats/crowdByDestinationId?destinationId=2
 

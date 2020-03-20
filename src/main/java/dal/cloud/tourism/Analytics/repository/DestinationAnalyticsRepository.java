@@ -21,6 +21,22 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "GROUP BY (c.name)",
 			nativeQuery = true)
 	public List<Object> getJourneyStatsForAllDestinations();
+
+	@Query(value = "select c.name, c.province, MONTHNAME(j.date), COUNT(j.journey_Id) "
+			+ "FROM city c "
+			+ "JOIN route r on c.city_Id = r.destination_id "
+			+ "JOIN journey j on j.route_id = r.route_id "
+			+ "GROUP BY (c.name), MONTHNAME(j.date)",
+			nativeQuery = true)
+	public List<Object> getJourneyStatsForAllDestinationsByMonth();
+	
+	@Query(value = "select c.name, c.province, YEAR(j.date), COUNT(j.journey_Id) "
+			+ "FROM city c "
+			+ "JOIN route r on c.city_Id = r.destination_id "
+			+ "JOIN journey j on j.route_id = r.route_id "
+			+ "GROUP BY (c.name), YEAR(j.date)",
+			nativeQuery = true)
+	public List<Object> getJourneyStatsForAllDestinationsByYear();
 	
 	@Query(value = "select c.name, c.province, SUM(b.seat_capacity-b.seats_available) "
 			+ "FROM city c "
@@ -30,6 +46,24 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "GROUP BY (c.name)",
 			nativeQuery = true)
 	public List<Object> getCrowdStatsForAllDestinations();
+	
+	@Query(value = "select c.name, c.province, MONTHNAME(j.date), SUM(b.seat_capacity-b.seats_available) "
+			+ "FROM city c "
+			+ "JOIN route r on c.city_Id = r.destination_id "
+			+ "JOIN journey j on j.route_id = r.route_id "
+			+ "JOIN booking_audit b on j.journey_Id = b.journey_Id "
+			+ "GROUP BY (c.name), MONTHNAME(j.date)",
+			nativeQuery = true)
+	public List<Object> getCrowdStatsForAllDestinationsByMonth();
+	
+	@Query(value = "select c.name, c.province, YEAR(j.date), SUM(b.seat_capacity-b.seats_available) "
+			+ "FROM city c "
+			+ "JOIN route r on c.city_Id = r.destination_id "
+			+ "JOIN journey j on j.route_id = r.route_id "
+			+ "JOIN booking_audit b on j.journey_Id = b.journey_Id "
+			+ "GROUP BY (c.name), YEAR(j.date)",
+			nativeQuery = true)
+	public List<Object> getCrowdStatsForAllDestinationsByYear();
 	
 	@Query(value = "select c.name, c.province, COUNT(j.journey_Id) "
 			+ "FROM city c "
