@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,38 +27,122 @@ public class JourneyAnalyticsController {
 	JourneyAnalyticsRepository journeyAnalyticsRepository;
 
 	@RequestMapping("/crowdForAllJourneys")
-	public List<Object> getCrowdStatsForAllJourneys() {
+	public List<Map<String,String>> getCrowdStatsForAllJourneys() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = journeyAnalyticsRepository.getCrowdStatsForAllJourneys();
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		List<Object[]> lst = new ArrayList<Object[]>();
+		Map<String,String> map;
+		
+		lst = journeyAnalyticsRepository.getCrowdStatsForAllJourneys();
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("date",val);
+				break;
+				
+				case 1: map.put("busCapacity",val);
+				break;
+				
+				case 2: map.put("freeSeats",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/crowdByJourneyId")
-	public List<Object> getCrowdStatsByJourneyId(@RequestParam("journeyId") int journeyId) {
+	public List<Map<String,String>> getCrowdStatsByJourneyId(@RequestParam("journeyId") int journeyId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = journeyAnalyticsRepository.getJourneyCrowdStatsbyJourneyId(journeyId);
+		List<Object[]> lst = new ArrayList<Object[]>();
+		lst = journeyAnalyticsRepository.getJourneyCrowdStatsbyJourneyId(journeyId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("date",val);
+				break;
+				
+				case 1: map.put("busCapacity",val);
+				break;
+				
+				case 2: map.put("freeSeats",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/crowdByDate")
-	public List<Object> getCrowdStatsByDate(@RequestParam("date") String date) {
+	public List<Map<String,String>> getCrowdStatsByDate(@RequestParam("date") String date) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = journeyAnalyticsRepository.getJourneyCrowdStatsbyDate(date);
+		List<Object[]> lst = new ArrayList<Object[]>();
+		lst = journeyAnalyticsRepository.getJourneyCrowdStatsbyDate(date);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("date",val);
+				break;
+				
+				case 1: map.put("busCapacity",val);
+				break;
+				
+				case 2: map.put("freeSeats",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 }

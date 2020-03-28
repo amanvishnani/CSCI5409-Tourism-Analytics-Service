@@ -20,7 +20,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "JOIN journey j on j.route_id = r.route_id "
 			+ "GROUP BY (c.name)",
 			nativeQuery = true)
-	public List<Object> getJourneyStatsForAllDestinations();
+	public List<Object []> getJourneyStatsForAllDestinations();
 
 	@Query(value = "select c.name, c.province, MONTHNAME(j.date), COUNT(j.journey_Id) "
 			+ "FROM city c "
@@ -28,7 +28,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "JOIN journey j on j.route_id = r.route_id "
 			+ "GROUP BY (c.name), MONTHNAME(j.date)",
 			nativeQuery = true)
-	public List<Object> getJourneyStatsForAllDestinationsByMonth();
+	public List<Object []> getJourneyStatsForAllDestinationsByMonth();
 	
 	@Query(value = "select c.name, c.province, YEAR(j.date), COUNT(j.journey_Id) "
 			+ "FROM city c "
@@ -36,7 +36,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "JOIN journey j on j.route_id = r.route_id "
 			+ "GROUP BY (c.name), YEAR(j.date)",
 			nativeQuery = true)
-	public List<Object> getJourneyStatsForAllDestinationsByYear();
+	public List<Object []> getJourneyStatsForAllDestinationsByYear();
 	
 	@Query(value = "select c.name, c.province, SUM(b.seat_capacity-b.seats_available) "
 			+ "FROM city c "
@@ -45,7 +45,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "JOIN booking_audit b on j.journey_Id = b.journey_Id "
 			+ "GROUP BY (c.name)",
 			nativeQuery = true)
-	public List<Object> getCrowdStatsForAllDestinations();
+	public List<Object []> getCrowdStatsForAllDestinations();
 	
 	@Query(value = "select c.name, c.province, MONTHNAME(j.date), SUM(b.seat_capacity-b.seats_available) "
 			+ "FROM city c "
@@ -54,7 +54,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "JOIN booking_audit b on j.journey_Id = b.journey_Id "
 			+ "GROUP BY (c.name), MONTHNAME(j.date)",
 			nativeQuery = true)
-	public List<Object> getCrowdStatsForAllDestinationsByMonth();
+	public List<Object []> getCrowdStatsForAllDestinationsByMonth();
 	
 	@Query(value = "select c.name, c.province, YEAR(j.date), SUM(b.seat_capacity-b.seats_available) "
 			+ "FROM city c "
@@ -63,7 +63,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "JOIN booking_audit b on j.journey_Id = b.journey_Id "
 			+ "GROUP BY (c.name), YEAR(j.date)",
 			nativeQuery = true)
-	public List<Object> getCrowdStatsForAllDestinationsByYear();
+	public List<Object []> getCrowdStatsForAllDestinationsByYear();
 	
 	@Query(value = "select c.name, c.province, COUNT(j.journey_Id) "
 			+ "FROM city c "
@@ -72,7 +72,7 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "WHERE r.destination_Id = :destinationId "
 			+ "GROUP BY (c.name)",
 			nativeQuery = true)
-	public List<Object> getJourneysbyDestinationId(int destinationId);
+	public List<Object []> getJourneysbyDestinationId(int destinationId);
 	
 	@Query(value = "select c.name, c.province, SUM(b.seat_capacity-b.seats_available) "
 			+ "FROM city c "
@@ -82,6 +82,6 @@ public interface DestinationAnalyticsRepository extends JpaRepository<Journey, I
 			+ "WHERE r.destination_Id = :destinationId "
 			+ "GROUP BY (c.name)",
 			nativeQuery = true)
-	public List<Object> getCrowdStatsbyDestinationId(int destinationId);
+	public List<Object []> getCrowdStatsbyDestinationId(int destinationId);
 	
 }

@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,110 +29,326 @@ public class UserAnalyticsController {
 	UserAnalyticsRepository userAnalyticsRepository;
 
 	@RequestMapping("/bookingCount")
-	public List<Object> getBookingCount(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getBookingCount(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getBookingCount(userId);
+		List<Object[]> lst = new ArrayList<Object[]>();
+		lst = userAnalyticsRepository.getBookingCount(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("totalBookings",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/bookingByMonth")
-	public List<Object> getBookingsCountByMonth(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getBookingsCountByMonth(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getBookingCountByMonth(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getBookingCountByMonth(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("month",val);
+				break;
+				
+				case 1: map.put("bookingsMade",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/bookingByYear")
-	public List<Object> getBookingsCountByYear(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getBookingsCountByYear(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getBookingCountByYear(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getBookingCountByYear(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("year",val);
+				break;
+				
+				case 1: map.put("bookingsMade",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/destinationsCount")
-	public List<Object> getDestinationsCount(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getDestinationsCount(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getDestinationsCount(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getDestinationsCount(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("destinationsVisited",val);
+				break;
+
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/destinationsByMonth")
-	public List<Object> getDestinationsCountByMonth(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getDestinationsCountByMonth(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getDestinationsCountByMonth(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getDestinationsCountByMonth(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("month",val);
+				break;
+				
+				case 1: map.put("destinationVisits",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/destinationsByYear")
-	public List<Object> getDestinationsCountByYear(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getDestinationsCountByYear(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getDestinationsCountByYear(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getDestinationsCountByYear(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("year",val);
+				break;
+				
+				case 1: map.put("destinationVisits",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/moneySpent")
-	public List<Object> getMoneySpent(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getMoneySpent(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getMoneySpent(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getMoneySpent(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("totalMoneySpent",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/moneySpentByMonth")
-	public List<Object> getMoneySpentByMonth(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getMoneySpentByMonth(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getMoneySpentByMonth(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getMoneySpentByMonth(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("month",val);
+				break;
+				
+				case 1: map.put("totalMoneySpent",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/moneySpentByYear")
-	public List<Object> getMoneySpentByYear(@RequestParam("userId") String userId) {
+	public List<Map<String,String>> getMoneySpentByYear(@RequestParam("userId") String userId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = userAnalyticsRepository.getMoneySpentByYear(userId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = userAnalyticsRepository.getMoneySpentByYear(userId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("year",val);
+				break;
+				
+				case 1: map.put("totalMoneySpent",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 }

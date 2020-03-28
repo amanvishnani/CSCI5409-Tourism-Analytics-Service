@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -26,98 +28,334 @@ public class DestinationAnalyticsController {
 	DestinationAnalyticsRepository destinationAnalyticsRepository;
 
 	@RequestMapping("/journeysForAllDestinations")
-	public List<Object> getJourneysForAllDestinations() {
+	public List<Map<String,String>> getJourneysForAllDestinations() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getJourneyStatsForAllDestinations();
+		List<Object[]> lst = new ArrayList<Object[]>();
+		lst = destinationAnalyticsRepository.getJourneyStatsForAllDestinations();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("totalJourneys",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/journeysForAllDestinationsByMonth")
-	public List<Object> getJourneysForAllDestinationsByMonth() {
+	public List<Map<String,String>> getJourneysForAllDestinationsByMonth() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getJourneyStatsForAllDestinationsByMonth();
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getJourneyStatsForAllDestinationsByMonth();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("month",val);
+				break;
+				
+				case 3: map.put("totalJourneys",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/journeysForAllDestinationsByYear")
-	public List<Object> getJourneysForAllDestinationsByYear() {
+	public List<Map<String,String>> getJourneysForAllDestinationsByYear() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getJourneyStatsForAllDestinationsByYear();
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getJourneyStatsForAllDestinationsByYear();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("year",val);
+				break;
+				
+				case 3: map.put("totalJourneys",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/crowdForAllDestinations")
-	public List<Object> getCrowdStatsForAllDestinations() {
+	public List<Map<String,String>> getCrowdStatsForAllDestinations() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getCrowdStatsForAllDestinations();
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getCrowdStatsForAllDestinations();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("visits",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/crowdForAllDestinationsByMonth")
-	public List<Object> getCrowdStatsForAllDestinationsByMonth() {
+	public List<Map<String,String>> getCrowdStatsForAllDestinationsByMonth() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getCrowdStatsForAllDestinationsByMonth();
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getCrowdStatsForAllDestinationsByMonth();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("month",val);
+				break;
+				
+				case 3: map.put("totalJourneys",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/crowdForAllDestinationsByYear")
-	public List<Object> getCrowdStatsForAllDestinationsByYear() {
+	public List<Map<String,String>> getCrowdStatsForAllDestinationsByYear() {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getCrowdStatsForAllDestinationsByYear();
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getCrowdStatsForAllDestinationsByYear();
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("year",val);
+				break;
+				
+				case 3: map.put("totalJourneys",val);
+				break;
+				
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/journeysByDestinationId")
-	public List<Object> getJourneysByDestinationId(@RequestParam("destinationId") int destinationId) {
+	public List<Map<String,String>> getJourneysByDestinationId(@RequestParam("destinationId") int destinationId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getJourneysbyDestinationId(destinationId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getJourneysbyDestinationId(destinationId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("totalJourneys",val);
+				break;
+
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 	
 	@RequestMapping("/crowdByDestinationId")
-	public List<Object> getCrowdStatsByDestinationId(@RequestParam("destinationId") int destinationId) {
+	public List<Map<String,String>> getCrowdStatsByDestinationId(@RequestParam("destinationId") int destinationId) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		System.out.println(currentPrincipalName);
 		
-		List<Object> list = new ArrayList<Object>();
-		list = destinationAnalyticsRepository.getCrowdStatsbyDestinationId(destinationId);
+		List<Object []> lst = new ArrayList<Object []>();
+		lst = destinationAnalyticsRepository.getCrowdStatsbyDestinationId(destinationId);
+		
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		Map<String,String> map;
+		
+		for(int i=0;i<lst.size();i++) {
+			map = new HashMap<String,String>();
+			Object[] ob = lst.get(i);
+			for(int j = 0;j<ob.length;j++){
+				
+				String val = ob[j]+"";
+				
+				switch(j){
+				
+				case 0: map.put("cityName",val);
+				break;
+				
+				case 1: map.put("provinceName",val);
+				break;
+				
+				case 2: map.put("totalJourneys",val);
+				break;
+
+				}
+			}
+			
+			list.add(map);
+		}
+		
 		return list;
 	}
 }
