@@ -20,7 +20,7 @@ build:
     paths:
       - .m2/repository
   tags:
-    - aman-ec2
+    - vali-ec2
   script: ./mvnw package
   artifacts:
     paths:
