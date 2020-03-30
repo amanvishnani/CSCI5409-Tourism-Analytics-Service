@@ -20,7 +20,7 @@ build:
     paths:
       - .m2/repository
   tags:
-    - vali-ec2
+    - gitlab-runner
   script: ./mvnw package
   artifacts:
     paths:
