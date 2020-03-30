@@ -28,7 +28,7 @@ build:
 
 docker-build:
   tags:
-    - aman-ec2
+    - vali-ec2
   before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   stage: package
