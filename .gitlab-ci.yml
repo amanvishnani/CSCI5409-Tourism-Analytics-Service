@@ -20,7 +20,7 @@ build:
     paths:
       - .m2/repository
   tags:
-    - gitlab-runner
+    - vali-ec2
   script: ./mvnw package
   artifacts:
     paths:
@@ -28,7 +28,7 @@ build:
 
 docker-build:
   tags:
-    - gitlab-runner
+    - vali-ec2
   before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   stage: package
